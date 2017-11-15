@@ -8,8 +8,7 @@ class Characters {
 	int numbers;
 	String morseCode;
 	
-
-	Characters (String character, String morseCode){
+	public Characters (String character, String morseCode){
 		this.character=character;
 		this.morseCode=morseCode; 
 	}
@@ -18,7 +17,7 @@ class Characters {
 class Numbers{
 	int numbers;
 	String morseCode;
-	Numbers (int number, String morseCode){
+	public Numbers (int number, String morseCode){
 		this.numbers=number;
 		this.morseCode=morseCode;
 	}
@@ -119,15 +118,36 @@ public static void main (String args[]){
 	chara.add(Z);
 	
 	System.out.println("Enter the text you want to convert");
-	String name=sc.next(); 
+	//String name=sc.next(); 
+	String name = sc.nextLine();
 	name = name.toUpperCase();
 	
+	String chk;
+	String code= ""; 
 	
-	
-	 for (int i = 0;i < name.length(); i++){
- 	    System.out.println(name.charAt(i));
- 	}
+	    //Adding Books to list  
+	for (int i = 0;i < name.length(); i++){  
+	    //Traversing list  
+	    for(Characters ch:chara){ 
+	    	chk = Character.toString(name.charAt(i));
+	    	
+	    	if (chk.equals( ch.character)){
+	    		System.out.println(chk);
+	            System.out.println(ch.morseCode);  
+	            code = code+ch.morseCode + ";";
 
+	    	}
+	    }  
+	}
+	
+	System.out.println(code);
+ 	    }
+ 	
+	 
+	 
+	 
+
+	 
 	 
 
 
@@ -138,4 +158,4 @@ public static void main (String args[]){
 }
 
 
-}
+
