@@ -23,18 +23,78 @@ class Numbers{
 	}
 }
 
-
 class Encrypt{
+
+	String chk;
+	String code= ""; 
+	String name;
+	ArrayList<Characters> chara;
+	
+	public Encrypt(String name,ArrayList<Characters> chara){
+		this.name=name;
+		this.chara = chara;
+	}
+	
+	public String Encryptfunc(){
+	
+	for (int i = 0;i < name.length(); i++){  
+	    chk = Character.toString(name.charAt(i));
+	    
+	    for(Characters ch:chara){ 	
+	    	if (chk.equals( ch.character)){
+	    		System.out.println(chk);
+	            System.out.println(ch.morseCode);  
+	            code = code+ch.morseCode + ";";
+
+	    	}
+	    }  
+	}
+	System.out.println(code);
+String actualcode = code.replace(";", "");
+System.out.println(actualcode);
+return code;
+	//}
 	
 	
+	//System.out.println(code);
+	}
 }
 
 class Decrypt{
-	
+	 String Decrypt = "";
+	 String text = "";
+	 String code;
+	 ArrayList<Characters> chara;
+	 
+public Decrypt (String code, ArrayList<Characters> chara){
+	this.code=code;
+	this.chara=chara;
 }
 
+public String DecryptFunc(){
+for (int i = 0;i < code.length(); i++){ 
+	
+	if(Character.toString(code.charAt(i)).equals(";")){
+		System.out.println(Decrypt);
+		for(Characters dec:chara){
+		if(Decrypt.equals(dec.morseCode)){
+			text = text+dec.character;
+			System.out.println(text);
+			++i;
+		}
+		}
+		Decrypt ="";
+	}
+	if (i<code.length())
+	Decrypt = Decrypt + code.charAt(i);
+}
 
-public class moorse {
+System.out.println(text);
+return text;
+}
+}
+
+public  class moorse {
 public static void main (String args[]){
 	System.out.println("Let's start the coding.");
 	Scanner sc=new Scanner(System.in);  
@@ -117,65 +177,18 @@ public static void main (String args[]){
 	chara.add(Y);
 	chara.add(Z);
 	
-	System.out.println("Enter the text you want to convert");
-	//String name=sc.next(); 
+	System.out.println("Enter the text you want to convert"); 
 	String name = sc.nextLine();
 	name = name.toUpperCase();
+	Encrypt c = new Encrypt(name,chara);
+	String code = c.Encryptfunc();
 	
-	//Encryption 
-	String chk;
-	String code= ""; 
-	
-	    //Adding Books to list  
-	for (int i = 0;i < name.length(); i++){  
-	    //Traversing list  
-	    for(Characters ch:chara){ 
-	    	chk = Character.toString(name.charAt(i));
-	    	
-	    	if (chk.equals( ch.character)){
-	    		System.out.println(chk);
-	            System.out.println(ch.morseCode);  
-	            code = code+ch.morseCode + ";";
-
-	    	}
-	    }  
-	}
-	
-	System.out.println(code);
-String actualcode = code.replace(";", "");
-System.out.println(actualcode);
-
- 	
-	 
-	 //Decryption
-	 
-//Here the input will be variable code not actual code, the display text will be actual text but the
-//actual decrypt code will be "code"
-	 
-	 String Decrypt = "";
-	 String text = "";
-	 
-for (int i = 0;i < code.length(); i++){ 
-	
-	if(Character.toString(code.charAt(i)).equals(";")){
-		System.out.println(Decrypt);
-		for(Characters dec:chara){
-		if(Decrypt.equals(dec.morseCode)){
-			text = text+dec.character;
-			System.out.println(text);
-			++i;
-		}
-		}
-		Decrypt ="";
-	}
-	Decrypt = Decrypt + code.charAt(i);
- }
-
-System.out.println(text); 	
-	
-	
-}	
+	Decrypt d = new Decrypt (code,chara);
+	d.DecryptFunc();
 }
+	
+}
+
 
 
 
