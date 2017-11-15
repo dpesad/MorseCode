@@ -42,7 +42,7 @@ public static void main (String args[]){
 	ArrayList<Numbers> numb = new ArrayList<Numbers>();
 	
 	Characters A = new Characters ("A","._");
-	Characters B = new Characters ("B","_..");
+	Characters B = new Characters ("B","_...");
 	Characters C = new Characters ("C","_._.");
 	Characters D = new Characters ("D","_..");
 	Characters E = new Characters ("E",".");
@@ -145,21 +145,36 @@ public static void main (String args[]){
 String actualcode = code.replace(";", "");
 System.out.println(actualcode);
 
-
- 	    }
  	
 	 
 	 //Decryption
 	 
-
+//Here the input will be variable code not actual code, the display text will be actual text but the
+//actual decrypt code will be "code"
 	 
+	 String Decrypt = "";
+	 String text = "";
 	 
+for (int i = 0;i < code.length(); i++){ 
+	
+	if(Character.toString(code.charAt(i)).equals(";")){
+		System.out.println(Decrypt);
+		for(Characters dec:chara){
+		if(Decrypt.equals(dec.morseCode)){
+			text = text+dec.character;
+			System.out.println(text);
+			++i;
+		}
+		}
+		Decrypt ="";
+	}
+	Decrypt = Decrypt + code.charAt(i);
+ }
 
-
-	
-	 	
+System.out.println(text); 	
 	
 	
+}	
 }
 
 
