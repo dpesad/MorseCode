@@ -122,6 +122,7 @@ public static void main (String args[]){
 	String name = sc.nextLine();
 	name = name.toUpperCase();
 	
+	//Encryption 
 	String chk;
 	String code= ""; 
 	
@@ -141,10 +142,14 @@ public static void main (String args[]){
 	}
 	
 	System.out.println(code);
+String actualcode = code.replace(";", "");
+System.out.println(actualcode);
+
+
  	    }
  	
 	 
-	 
+	 //Decryption
 	 
 
 	 
