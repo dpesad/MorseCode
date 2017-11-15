@@ -1,25 +1,15 @@
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
 //Class to create morseCode for each of the string
 class Characters {
 	String character;
-	int numbers;
+	int Characters;
 	String morseCode;
 	
 	public Characters (String character, String morseCode){
 		this.character=character;
 		this.morseCode=morseCode; 
-	}
-}
-
-class Numbers{
-	int numbers;
-	String morseCode;
-	public Numbers (int number, String morseCode){
-		this.numbers=number;
-		this.morseCode=morseCode;
 	}
 }
 
@@ -44,19 +34,15 @@ class Encrypt{
 	    	if (chk.equals( ch.character)){
 	    		System.out.println(chk);
 	            System.out.println(ch.morseCode);  
-	            code = code+ch.morseCode + ";";
-
-	    	}
-	    }  
+	            code = code+ch.morseCode + " ";
+	    	}	
+	    }
+	    if (chk.equals(" ")){
+	    	code =code + "/" +" "; 
+	    }
 	}
 	System.out.println(code);
-String actualcode = code.replace(";", "");
-System.out.println(actualcode);
-return code;
-	//}
-	
-	
-	//System.out.println(code);
+	return code;
 	}
 }
 
@@ -74,7 +60,7 @@ public Decrypt (String code, ArrayList<Characters> chara){
 public String DecryptFunc(){
 for (int i = 0;i < code.length(); i++){ 
 	
-	if(Character.toString(code.charAt(i)).equals(";")){
+	if(Character.toString(code.charAt(i)).equals(" ")){
 		System.out.println(Decrypt);
 		for(Characters dec:chara){
 		if(Decrypt.equals(dec.morseCode)){
@@ -83,13 +69,17 @@ for (int i = 0;i < code.length(); i++){
 			++i;
 		}
 		}
+		
 		Decrypt ="";
 	}
+
 	if (i<code.length())
 	Decrypt = Decrypt + code.charAt(i);
 }
+text = text.replace("  ", " ");
 
 System.out.println(text);
+
 return text;
 }
 }
@@ -99,7 +89,6 @@ public static void main (String args[]){
 	System.out.println("Let's start the coding.");
 	Scanner sc=new Scanner(System.in);  
 	ArrayList<Characters> chara = new ArrayList<Characters>();
-	ArrayList<Numbers> numb = new ArrayList<Numbers>();
 	
 	Characters A = new Characters ("A","._");
 	Characters B = new Characters ("B","_...");
@@ -127,29 +116,31 @@ public static void main (String args[]){
 	Characters X = new Characters ("X","_.._");
 	Characters Y = new Characters ("Y","_.__");
 	Characters Z = new Characters ("Z","__..");
-
-	Numbers num1 = new Numbers (1,".____");
-	Numbers num2 = new Numbers (2,"..___");
-	Numbers num3 = new Numbers (3,"...__");
-	Numbers num4 = new Numbers (4,"...._");
-	Numbers num5 = new Numbers (5,".....");
-	Numbers num6 = new Numbers (6,"_....");
-	Numbers num7 = new Numbers (7,"__...");
-	Numbers num8 = new Numbers (8,"___..");
-	Numbers num9 = new Numbers (9,"____.");
-	Numbers num0 = new Numbers (0,"_____");
+	Characters spc = new Characters (" ","/");
 	
-	numb.add(num1);
-	numb.add(num2);
-	numb.add(num3);
-	numb.add(num4);
-	numb.add(num5);
-	numb.add(num6);
-	numb.add(num7);
-	numb.add(num8);
-	numb.add(num9);
-	numb.add(num0);
+	Characters num1 = new Characters ("1",".____");
+	Characters num2 = new Characters ("2","..___");
+	Characters num3 = new Characters ("3","...__");
+	Characters num4 = new Characters ("4","...._");
+	Characters num5 = new Characters ("5",".....");
+	Characters num6 = new Characters ("6","_....");
+	Characters num7 = new Characters ("7","__...");
+	Characters num8 = new Characters ("8","___..");
+	Characters num9 = new Characters ("9","____.");
+	Characters num0 = new Characters ("0","_____");
 	
+	chara.add(num1);
+	chara.add(num2);
+	chara.add(num3);
+	chara.add(num4);
+	chara.add(num5);
+	chara.add(num6);
+	chara.add(num7);
+	chara.add(num8);
+	chara.add(num9);
+	chara.add(num0);
+	
+	chara.add(spc);
 	chara.add(A);
 	chara.add(B);
 	chara.add(C);
@@ -180,6 +171,7 @@ public static void main (String args[]){
 	System.out.println("Enter the text you want to convert"); 
 	String name = sc.nextLine();
 	name = name.toUpperCase();
+	
 	Encrypt c = new Encrypt(name,chara);
 	String code = c.Encryptfunc();
 	
